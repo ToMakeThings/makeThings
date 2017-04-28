@@ -1,0 +1,29 @@
+runjs.cn  js特效
+
+慕课网 webpack使用讲解：
+http://www.imooc.com/learn/802  
+
+http://www.imooc.com/learn/796
+
+术胖的Vue2.0视频教程已经出了4季，共27集视频。（免费入门教程哦）
+【第一季】VUE2.0视频教程-入门和内部指令(共8集)
+http://jspang.com/2017/02/23/vue2_01/
+【第二季】VUE2.0视频教程-全局API(共9集)
+http://jspang.com/2017/03/14/vue2_02/
+【第三季】VUE2.0视频教程-选项（共6集）
+http://jspang.com/2017/03/26/vue3/
+【第四季】VUE2.0视频教程-实例和内置组件（共4集）
+http://jspang.com/2017/04/09/vue2_4/
+
+
+
+http://www.kancloud.cn/jikeytang/qq/87646   前段面试资源
+http://www.kancloud.cn/jikeytang/qq/81143
+
+
+炫酷的一个js网站
+http://lib.csdn.net/base/javascript/structure
+
+githut 使用
+http://jingyan.baidu.com/article/f7ff0bfc7181492e27bb1360.html
+source  tree 可以拉取推送代码

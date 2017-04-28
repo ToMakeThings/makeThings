@@ -1,0 +1,4 @@
+自己生成一个模拟后台的json接口 便于我们与后台进行交互时自己先创建的一个假数据
+先安装上这个文件  cnpm  install -g json-server
+然后监视假数据 即自己写的json     json-server --watch db.json
+没然后了 自己掉接口吧 - -~

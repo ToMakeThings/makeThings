@@ -1,0 +1,82 @@
+H4  文档声明 语言声明  
+H5简化了声明
+隐藏 ：disable:none;
+           overflow:hidden
+           visibility:hidden
+           opacity:0
+新增标签：
+header
+修改滚动条宽度 ： &::-webkit-scrollbar{width:0;}
+section
+      nav
+      aside 
+      address
+article
+footer
+多个选择器用逗号隔开是“群组选择器”
+link 在页面引入一个css文件
+import 在一个css文件引入另一个css文件
+移动端常用的几个页面大小
+display:-webkit-box;
+-webkit-box-orient:vertical  horizontal
+-webkit-box-flex:1
+
+在开发h5页面时容易遇到的问题  
+1.  要给最大的盒子一个弹性盒 
+2.  在用到padding时 要用box-sizing:border-box
+
+
+sass 可以封装函数：
+@mixin font($val,$val2,$val3,$name){
+.#{$name}-14{font-size:$val;color:blue;}
+.#{$name}-18{font-size:$val2;color:red;}
+.#{$name}-22{font-size:$val3;color:green;}
+
+
+
+https://isux.tencent.com/css3/index.html    CSS动画网站
+https://tympanus.net/codrops/css_reference/
+
+dom转化为jq $("")
+jq对象转换为dom $("")[0]  $("").get(0);
+
+
+关于localStorage
+localStorage.setItem(key,value)
+sessionStorage.setItem(key,value);
+网址：
+http://www.cnblogs.com/rainman/archive/2011/06/22/2086069.html
+
+
+js5种设计模式
+http://www.51xuediannao.com/qd63/index.php/page-2-53-1.html
+
+
+原生js中找到第一个元素
+document.querySelector("#demo");
+路由：
+angular.module('routingDemoApp',['ngRoute']);
+
+
+文字沾满整个宽度
+letter-spacing（）；
+
+cordova 打包
+reat native   facebook 为它的作品       用javascript调用原声组件
+webpack 
+JSX 语法糖
+
+call改变this指向
+new 改变this指向  指向函数本身   new  heitou();  this指向heitou();
+arr1=[1,2,3]
+arr1=[4,5,6]
+Array.prototype.push.apply(arr1,arr2);  将arr2数组加入到arr1里面
+
+wing 微型响应式css框架
+share  Js插件
+Cerebal  JsMVC应用程序  状态管理器
+weak  文本工具提示库
+css loader  加载表
+Yarn  管理包
+CavansGanges  仪表
+CSS ICON  图标集网站

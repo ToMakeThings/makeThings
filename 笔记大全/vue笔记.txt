@@ -1,0 +1,819 @@
+事件对象：@click="show($evnet)"
+------------------
+w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true
+-------------------
+事件冒泡  阻止冒泡
+    a) ev.cancelBubble=true
+    b) @click.stop 推荐
+默认行为（默认事件）
+阻止默认行为：
+    a) ev,preventDefault();
+    b) @contextmenu.prevent 推荐
+
+键盘事件  
+  回车
+    a) @keyup.13
+    b)@keyup.enter
+  上下左右
+    @key.up/keydown.left
+    @key.up/keydown.right
+    @key.up/keydown.top
+    @key.up/keydown.down
+
+属性
+    图片放路径时最好用v-bind 绑定
+     v-bind:src=""
+     简写  ：src=""
+    <img src="{{url}}"> 效果会出来，但会报一个404错误；
+    <img v-bind:src ="url"> 效果可以出来，不会发404请求
+class和style
+    :class=""  v-bing:class=""
+    :style=""
+    :class="[red]" red是数据
+    :class="[red,b,c,d]"
+   {{msg}}  
+   {{*msg}}  数据只绑定一次
+{{{msg}}} 页面转义输出 
+
+post  
+    this.$http.post('post.php',{
+    a:1,
+    b:20
+},{
+    emulateJSON:true
+}).then(function(res){
+    alert(res.data)
+},function(){
+  alert(res.status)
+}); 
+post请求时要加上  emulateJSON:true
+jsonp请求走get
+
+:class="{gray:$index==now}"
+
+
+v-bing:src  简写  为 ：src
+：class=[a,b];   这是传入多个class
+单个class  这样写  ：class{red:true}   true为显示这个class设置的样式  false为不显示
+过滤器
+分为两种 系统自带  自定义过滤器
+作用是 扩展html页面的
+
+系统自带的属性
+{{msg|filter}}
+{{msg|filterA|filterB}}
+uppercase eg：{{‘welcome’|uppercase}}  字母大写
+lowercase  字母小写
+capitalize   首字母大写
+currency 钱
+{{msg|fulterA参数}}
+
+交互
+引入：vue-resouce
+get
+post
+jsonp
+------------------------------
+post传输：
+原生js 的 ajax  head头
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send('uname='+uname+'&uschool='+uschool+'&uinfo='+uinfo);
+vue 里面要加上   emulateJSON:true
+
+--------------------------------
+这是处理JavaScript跨域总结与解决办法 的网站
+http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html#m4
+----------------------------------------
+百度接口
+https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=n&json=1&p=3&sid=22584_22375_1421_21104_20719&req=2&csor=1&cb=show
+
+
+vue生命周期
+钩子函数
+created  实例已经创建
+beforeCompile 编译之前
+Compiled 编译之后
+    beforeMount 挂载前状态
+    mounted 挂载结束状态
+    beforeUpdate 更新前状态
+    updated 更新完成状态
+beforeDestroy 销毁前状态
+destroyed 销毁完成状态
+ready 插入到文档中   
+---------------------------------  
+用户会看到花括号标记
+v-cloak 防止闪烁  防治出现延时的花括号{{msg}}
+v-text 也会出来数据
+v-html  {{{msg}}}   vue 2.0删除这个属性了
+ng:$scope.$watch
+computed:{
+  b:function(){
+       return this.a+=1;
+   } 
+}
+ 这是一个业务逻辑代码  可以控制一个属性值的变化  必须 return给b赋值
+
+vm.$el-> 就是元素
+vm.$data->就是data
+vm.$mount->手动挂载vue程序
+vm.$options.show();    可以获取自定义属性
+vm.$detroy  销毁对象
+vm.$log     （是个数组 所有的数据会存在里面）   查看现在数据的状态
+---------------------------
+循环 
+v-for="value in data"
+会有重复的数据   有时候不能重复添加相同数据
+
+可以加track-by=“$index/uid”; (索引)
+-------------------------------------------
+过滤器
+capitalize
+uppercase
+currency
+debounce  延时执行
+
+数据配合使用的过滤器
+<li>v-for="val in arr | filterBy a"</li> 过滤数据
+limitBy 限制几个
+limitBy 参数（取几个）
+limitBy 取几个  从哪里开始 （根据下标）
+orderBy '数据'  或者  写1    -1  等   排序 
+自定义过滤器 model->过滤->view
+Vue.filter(name,function(input){
+})
+自定义指令
+Vue.directive('red',function(){
+    this.el.style.background='red';
+})
+显示的时候必须用v开头    <span v-red></span>	
+---------------------------------------------
+自定义元素指令
+Vue.elementDirective('zns-red')
+
+
+@keydown.a  按下A键就可以触发事件
+ctrl 注意 按键上的字不管事  要按键码 17
+Vue.directive('on').keycodes.ctrl=17;  可以用自定义事件绑定
+
+监听数据变化
+vm.$el/$mount/$options/......
+vm.$watch(name.function(){
+  
+});
+当用$watch监听事件时 当第一个参数发生变化时 会触发第二个参数也就是事件
+----
+深度监视的时候加上  deep:true
+vm.$watch(name.function(){
+  
+},{deep:true});
+-------------------------------------
+vue组件
+vue-loader
+vue-router
+-----------------------
+bower->(前端)包管理器
+npm install bower -g
+     验证 bower --version      验证这个bower的版本
+
+bower install<包名>
+bower uninstall<包名>    卸载东西
+bower info <包名>   查看包版本信息
+bower install vue #1.0.28
+-------------------------
+vue-过渡 （动画）
+在style里面设置css
+.fade-transtion{
+transition: 1s all ease;
+}
+<div v-show='bSign'  transtion="fade"></div>
+------------------------------
+Vue.filter(name,{
+    read
+    writer
+})
+--------
+Vue.component('aa',Aaa);
+*组件里面放数据
+data必须是函数的形式，函数必须返回一个对象（json）
+
+局部组件
+放到某个组件内部
+var vm=new Vue({
+  el:"#box";
+  data:{
+     bSign:true
+   },
+   components:{
+   aaa:Aaa
+}
+})
+-------------------------------
+<component :is="a"></component>   在页面显示的时候可以用这个is 展示数据
+a是（组件名称）
+
+
+安装一个调试工具   vue-devtools 
+template 在这个模板里边调用组件可以显示在页面中
+
+----------------------
+组件数据传递
+1.子组件就想获取父组件data
+  在调用子组件：
+        <bbbb :m="数据"></bbb>
+  子组件之内
+       props：['m','myMsg']
+       props:{
+          'm':String,
+           'myMsg':Number
+       }
+
+2 父级获取子级数据
+   *子组件把自己的数据发送到父级
+  vm.$emit（事件名，数据）           ------>发送数据
+  v-on:@                
+-----------------------------
+vm.dispatch(事件名，数据)    子级向父级发送数据
+vm.broadcast(事件名,数据)    父级向子级广播数据
+      配合：event:{}
+在vue2.0里面已经，报废了
+
+------------------------------------------
+<a v-link="{path:'/home'}">主页</a> 跳转链接
+展示内容
+<router-view></router-view>
+-----------------------------------
+下载vue-router版本步骤
+$ npm install bower
+$ bower install vue-router#0.7.13
+-------------------------------
+关于vue 路由
+路由是方便我们找到页面对应的模块路径 方便将需要的数据通过路由找路径把页面展示出来
+路由分为以下几点
+1 准备一个根组件   
+   var App=Vue.extend();
+
+2  准备需要用到的组件
+   var Home=Vue.extend({
+     template:'#home'
+   });
+
+3  准备路由
+   var router=new VueRouter();
+   (前提是要把 vue-router.js 这个插件引入到页面中)
+
+4  关联路由
+    router.map({
+        'home':{
+             component:Home,    //关联需要的组件
+              subRoutes:{
+
+                   'login':{
+          	        component:{
+          	             template:'<strong>我是登录信息</strong>'
+                        }
+          	    },
+                     reg{
+          	        component:{
+          	             template:'<strong>我是注册信息</strong>'
+                        }
+          	    },
+ 
+               }
+          }
+
+     })
+// template可以写到js里面 也可以写到html里面
+
+    5 启动路由
+     router.start(App,'#box')
+     
+
+默认选中哪个个页面
+         router.redirect({
+          	'/':'home'
+          })
+
+
+{{$route.params | json}}   -->当前参数
+{{$route.path}}                    -->当前路径
+{{$route.query | json}}         -->数据 
+
+------------------------
+App vue   -->变成正常代码
+
+--------------------------------------------------------------
+vue2.0:
+	bower info vue
+
+	http://vuejs.org/
+到了2.0以后，有哪些变化?
+
+1. 在每个组件模板，不在支持片段代码
+	组件中模板:
+		之前:
+			<template>
+				<h3>我是组件</h3><strong>我是加粗标签</strong>
+			</template>
+		现在:  必须有根元素，包裹住所有的代码
+			<template id="aaa">
+			        <div>
+			            <h3>我是组件</h3>
+			            <strong>我是加粗标签</strong>
+			        </div>
+			</template>
+2. 关于组件定义
+	Vue.extend	这种方式，在2.0里面有，但是有一些改动，这种写法，即使能用，咱也不用——废弃
+	
+	Vue.component(组件名称,{	在2.0继续能用
+		data(){}
+		methods:{}
+		template:
+	});
+
+	2.0推出一个组件，简洁定义方式：
+	var Home={
+		template:''		->   Vue.extend()
+	};
+3. 生命周期
+	之前:
+		init	
+		created
+		beforeCompile
+		compiled
+		ready		√	->     mounted
+		beforeDestroy	
+		destroyed
+	现在:
+		beforeCreate	组件实例刚刚被创建,属性都没有
+		created	实例已经创建完成，属性已经绑定
+		beforeMount	模板编译之前
+		mounted	模板编译之后，代替之前ready  *
+		beforeUpdate	组件更新之前
+		updated	组件更新完毕	*
+		beforeDestroy	组件销毁前
+		destroyed	组件销毁后
+3. 循环
+	2.0里面默认就可以添加重复数据
+
+	arr.forEach(function(item,index){
+
+	});
+
+	去掉了隐式一些变量
+		$index	$key
+
+	之前:
+		v-for="(index,val) in array"
+	现在:
+		v-for="(val,index) in array"
+
+
+4. track-by="id"
+	变成
+		<li v-for="(val,index) in list" :key="index">
+5. 自定义键盘指令
+	之前：Vue.directive('on').keyCodes.f1=17;	
+	
+	现在:  Vue.config.keyCodes.ctrl=17
+6. 过滤器
+	之前:
+		系统就自带很多过滤
+		{{msg | currency}}
+		{{msg | json}}
+		....
+		limitBy
+		filterBy
+		.....
+	一些简单功能，自己通过js实现
+
+	到了2.0， 内置过滤器，全部删除了
+
+
+	lodash	工具库	_.debounce(fn,200)
+
+
+	自定义过滤器——还有
+		但是,自定义过滤器传参
+
+		之前:	{{msg | toDou '12' '5'}}
+		现在: 	{{msg | toDou('12','5')}}
+------------------------------------------------------
+组件通信:
+	vm.$emit()
+	vm.$on();
+
+	父组件和子组件:
+
+	子组件想要拿到父组件数据:
+		通过  props
+
+	之前，子组件可以更改父组件信息，可以是同步  sync
+	现在，不允许直接给父级的数据，做赋值操作
+
+	问题，就想更改：
+		a). 父组件每次传一个对象给子组件, 对象之间引用	√
+		b). 只是不报错, mounted中转
+------------------------------------------------------
+可以单一事件管理组件通信:	vuex
+	var Event=new Vue();
+
+	Event.$emit(事件名称, 数据)
+
+	Event.$on(事件名称,function(data){
+		//data
+	}.bind(this));
+(或者用_this=this 接受这个数据)
+------------------------------------------------------
+debounce	废弃
+	->   lodash
+		_.debounce(fn,时间)
+------------------------------------------------------
+
+vue动画
+vue路由
+--------------------------------------
+transition 之前  属性
+<p transition="fade"></p>
+
+.fade-transition{}
+.fade-enter{}
+.fade-leave{}
+--------------------------------------
+
+到2.0以后 transition 组件
+
+<transition name="fade">
+	运动东西(元素，属性、路由....)
+</transition>
+
+class定义:
+.fade-enter{}	//初始状态
+.fade-enter-active{}  //变化成什么样  ->  当元素出来(显示)
+
+.fade-leave{}
+.fade-leave-active{} //变成成什么样   -> 当元素离开(消失)
+
+如何animate.css配合用？
+	<transition enter-active-class="animated zoomInLeft" leave-active-class="animated zoomOutRight">
+            	<p v-show="show"></p>
+        	</transition>
+
+多个元素运动:
+	<transition-group enter-active-class="" leave-active-class="">
+		<p :key=""></p>
+		<p :key=""></p>
+	</transition-group>
+------------------------------------------
+vue2.0 路由:
+	http://router.vuejs.org/zh-cn/index.html
+基本使用:
+1.  布局
+	<router-link to="/home">主页</router-link>
+
+	<router-view></router-view>
+2. 路由具体写法
+	//组件
+	var Home={
+	    template:'<h3>我是主页</h3>'
+	};
+	var News={
+	    template:'<h3>我是新闻</h3>'
+	};
+
+	//配置路由
+	const routes=[
+	    {path:'/home', componet:Home},
+	    {path:'/news', componet:News},
+	];
+
+	//生成路由实例
+	const router=new VueRouter({
+	    routes
+	});
+
+	//最后挂到vue上
+	new Vue({
+	    router,
+	    el:'#box'
+	});
+3. 重定向
+	之前  router.rediect  废弃了
+	{path:'*', redirect:'/home'}
+------------------------------------------
+路由嵌套:
+	/user/username
+
+	const routes=[
+	    {path:'/home', component:Home},
+	    {
+	        path:'/user',
+	        component:User,
+	        children:[  //核心
+	            {path:'username', component:UserDetail}
+	        ]
+	    },
+	    {path:'*', redirect:'/home'}  //404
+	];
+------------------------------------------
+/user/strive/age/10
+
+:id
+:username
+:age
+------------------------------------------
+路由实例方法:
+	router.push({path:'home'});  //直接添加一个路由,表现切换路由，本质往历史记录里面添加一个
+	router.replace({path:'news'}) //替换路由，不会往历史记录里面添加
+------------------------------------------
+vue-cli
+------------------------------------------
+npm install
+------------------------------------------
+脚手架:  vue-loader
+	1.0  -> 
+	new Vue({
+	  el: '#app',
+	  components:{App}
+	})	
+	2.0->
+	new Vue({
+	  el: '#app',
+	  render: h => h(App)
+	})
+------------------------------------------
+vue2.0 
+	vue-loader和vue-router配合
+------------------------------------------
+
+style-loader	css-loader
+
+	style!css
+手动配置自己:
+	webpack+vue-loader
+
+	webpack加载模块
+-------------------------------------
+如何运行此项目？
+	1. npm install	或者    cnpm install
+	2. npm run dev
+		->  package.json
+			"scripts":{
+				"dev":"webpack-dev-server --inline --hot --port 8082"
+			}
+
+以后下载模块：
+	npm install <package-name>  --save-dev
+
+EADDRINUSE	端口被占用
+
+少了:
+	webpack-dev-server
+	webpack
+----------------------------------------
+.vue 结尾，之后称呼组件
+----------------------------------------
+路由:
+	vue-router
+
+		->  如何查看版本:
+			bower info vue-router
+
+	路由使用版本: 0.7.13
+配合vue-loader使用:
+1. 下载vue-router模块
+	cnpm install vue-router@0.7.13
+2. import VueRouter from 'vue-router'
+
+3. Vue.use(VueRouter);
+
+4. 配置路由
+	var router=new VueRouter();
+	router.map({
+		路由规则
+	})
+5. 开启
+	router.start(App,'#app');
+
+注意:
+	之前: index.html	->   <app></app>
+	现在: index.html	->   <div id="app"></div>
+
+	App.vue	->   需要一个 <div id="app"></div>  根元素
+
+home	news
+---------------------------------------------
+路由嵌套:
+	和之前一模一样
+--------------------------------------------
+上线:
+	npm run build
+		->	webpack -p
+--------------------------------------------
+脚手架:
+	vue-cli——vue脚手架
+		帮你提供好基本项目结构
+
+本身集成很多项目模板:
+	simple		个人觉得一点用都没有
+	webpack	可以使用(大型项目)
+			Eslint 检查代码规范，
+			单元测试
+	webpack-simple	个人推荐使用, 没有代码检查	√
+
+	browserify	->  自己看
+	browserify-simple
+	
+--------------------------------------------
+基本使用流程:
+1. npm install vue-cli -g	安装 vue命令环境
+	验证安装ok?
+		vue --version
+2. 生成项目模板
+	vue init <模板名> 本地文件夹名称
+3. 进入到生成目录里面
+	cd xxx
+	npm install
+4. npm run dev
+ 
+------------------------------------------
+项目:
+------------------------------------------
+vue-cli相当于脚手架 给你自动生成模板工程
+vue-router是 vue路由插件 支持你单页应用的
+vue-loader是webpack下loader插件 可以把.vue文件 输出成组件
+-----------------------------------------------
+vue问题:
+	论坛
+	http://bbs.zhinengshe.com
+------------------------------------------------
+UI组件
+	别人提供好一堆东西
+
+	目的: 
+		为了提高开发效率
+		功能
+
+	原则: 拿过来直接使用
+
+vue-cli  ->  vue-loader
+
+bootstrap:
+	twitter	开源
+	简洁、大方
+	官网文档
+
+	基于 jquery
+
+	栅格化系统+响应式工具  (移动端、pad、pc)
+	按钮
+--------------------------------
+bower	前端包管理器	   jquery#1.11.1
+	自动解决依赖
+npm	node包管理器	  jquery@1.11.1
+--------------------------------
+
+饿了么团队开源一个基于vue 组件库
+	elementUI	PC
+	MintUI		移动端
+--------------------------------
+elementUI:
+	如何使用
+
+	官网:http://element.eleme.io/
+使用:
+1. 安装 element-ui
+	npm i element-ui -D
+
+	npm install element-ui --save-dev
+
+	//   i	->    install
+	//   D     ->    --save-dev
+	//   S	->    --save
+2. 引入   main.js	入口文件
+	import ElementUI from 'element-ui'
+	import 'element-ui/lib/theme-default/index.css'
+
+	全部引入
+3. 使用组件
+	Vue.use(ElementUI)
+
+	css-loader  	引入css
+	字体图标	file-loader
+
+
+	less:
+		less
+		less-loader
+-------------------------------------------------
+按需加载相应组件:	√
+	就需要 按钮
+1. babel-plugin-component
+	cnpm install babel-plugin-component -D
+2. .babelrc文件里面新增一个配置
+	  "plugins": [["component", [
+	    {
+	      "libraryName": "element-ui",
+	      "styleLibraryName": "theme-default"
+	    }
+	  ]]]
+3. 想用哪个组件就用哪个
+	引入:
+		import {Button,Radio} from 'element-ui'
+	使用:
+		a). Vue.component(Button.name, Button);  个人不太喜欢
+		b). Vue.use(Button);   √
+---------------------------------------------------
+发送请求:
+	vue-resourse		交互
+
+	axios
+---------------------------------------------------
+element-ui    ->  pc
+
+mint-ui
+	移动端 ui库
+
+	http://mint-ui.github.io/
+
+1. 下载
+	npm install mint-ui -S
+
+	-S
+	--save
+2. 引入
+	import Vue from 'vue';
+	import Mint from 'mint-ui';
+	import 'mint-ui/lib/style.css'
+	Vue.use(Mint);
+
+	按需引入:
+	import { Cell, Checklist } from 'minu-ui';
+	Vue.component(Cell.name, Cell);
+	Vue.component(Checklist.name, Checklist);
+
+http://mint-ui.github.io/docs/#!/zh-cn2
+
+论坛:
+	
+-------------------------------------------------------
+
+Mint-ui-demo:  看着手册走了一遍
+
+https://github.com/itstrive/striveCode/tree/js/vue2.0-Mint-ui-demo
+
+((((((((((((((((((((((((((((((((((((((((((((((((((((((
+用命令建立一个文件     vue init webpack-simple bootstrap-demo（文件夹名称）
+进入这个文件     cd bootstrap-demo
+安装一下（运行命令）  cnpm install
+生成一个端口           npm run dev
+报错可能是端口冲突  在package.json 文件里面找到 dev  加上 --port 8085（自己写个端口）	
+))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((
+在安装element-ui 的时候和上面也是一样的
+需要向   main.js	 写一些东西：
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+
+Vue.use(ElementUI)
+
+))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+安装        vue init webpack-simple custom-global-component
+进入文件   cd custom-global-component
+安装node-module    cnpm install
+在src下面创建一个文件  components  里面再建个文件随便写名称 这里用 loading
+然后在main.js 里面引入   import Loading from  ‘./components/loading’
+Vue.use(Loading); 
+Loading文件下面创建一个 index.js
+里面内容有：
+import LoadingComponent from './Loading.vue'
+const Loading={
+install:function(Vue){
+ Vue.component('Loading',LoadingComponent)
+}
+};
+export default Loading
+
+Loading.vue也是Loading文件下的东西	内容为<template></template>
+
+((((((((((((((((((((((((((((((((((((
+搞清楚 export default 的作用
+
+扒网页 
+))))))))))))))))))))))))))))))))))))))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

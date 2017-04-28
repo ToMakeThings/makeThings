@@ -1,0 +1,12 @@
+安装node.js 
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+安装gulp
+cnpm install -g gulp
+
+在文件里打开 git bash here
+gulp init 
+生成 package.json文件
+
+cnpm install gulp -save-dev     (本地安装gulp)
+生成node_modules
+

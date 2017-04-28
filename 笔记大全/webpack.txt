@@ -1,0 +1,8 @@
+webpack hello.js hello.bundle.js --module-bind 'css=style-loader!css-loader'  --watch
+--watch用来监听命令
+--progress  看见过程  短暂百分比
+--display-modules  处理方式列出来
+--display-reasons  为什么打包的原因告诉你
+
+loader  加载器
+安装 css-loader  style-loader  postcss-loader
