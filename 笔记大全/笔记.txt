@@ -1,0 +1,265 @@
+链接: http://pan.baidu.com/s/1qYd9kSG 密码: 3x3m
+无序列表钱的圆心或正方形 在ul里加type=""
+清除浮动
+1.添加height
+2.添加float
+3.display:inline-block
+4.<div class="clear"></div>
+5.<br clear="all/>
+6.  .clear:after{
+content:"";
+display:block;
+clear:both;
+}
+7.overflow:hidden;溢出隐藏 清除浮动 添加一个高度
+
+相对定位
+1.position:relative;移动要有方向(移动之后，位置保留)
+2.不脱离文档流
+3.没有left right top bottom, 对元素没有影响
+
+绝对定位position:absolute
+1.使元素完全脱离文档流，原始位置不保留
+2.提升层级
+3.使内嵌元素支持宽高
+4.使块状元素的宽度被撑开
+5.相对于父级发生偏移，没有父级就会相对于document定位
+
+固定定位
+1.
+
+opacity:0.5   变透明（在父级设置会传递给子级solutes）
+
+  background:green url("01.jpg") no-repeat 100px 0 fixed;   顺序->左右  上下
+
+渐变
+background:linear-gradient(left top,red,yellow);
+              background:-webkit-linear-gradient(left top,red,yellow);
+              /*谷歌*/
+              background:-moz-linear-gradient(left,red,yellow);
+              /*火狐*/
+              background:-o-linear-gradient(left top,red,yellow);
+              /*欧朋*/
+              background:-ms-linear-gradient(left top,red,yellow);
+              /*ie*/
+              /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='red', endColorstr='yellow',GradientType=0 );*/
+
+
+圆角
+border-radius:10px;
+
+延时(慢速)
+transition:1s;
+角度
+-webkit-transform:rotate(720deg);
+
+
+属性标签
+~ 空格
+^属性名开始第一个字母
+$属性名最后一个字母
+*属性名任意一个字母
+p[ll*=m]            
+
+
+p:nth-child(1){}  找到父级的第一个元素并且必须是p元素
+p:nth-child(odd){}  隔行变色  奇数 
+p:nth-child(even){}  隔行变色  偶数
+p:nth-child(2n-1){}    倍数 
+p:nth-of-type(2)  找到p元素的第二个元素
+p:nth-last-of-type(2)  找到p元素的倒数第二个元素
+
+隐藏禁止写入  disbabled
+透明  rgba 有四个参数（0,0,0,0.5）  0为透明 1为不透明
+
+弹性容器-flex container
+flex-direction:row  row-reverse  column column-reverse
+flex-wrap:nowrap wrap  wrap-reverse   超出弹性容器范围是否换行
+flex-flow:flex-dirextion  flex0wrap  的复合属性
+justify-content:flex-start flex-end center space-between space-around 主轴上的对齐方式
+align-items:stretch flex-start flex-end center baseline 侧轴上的对齐方式
+align-content:stretch flex-start flex-end center space-between space-around 侧轴上有空白时，侧轴的对齐方式
+
+-flex items
+order 控制弹性容器里的子元素的顺序
+flex-grow 设置弹性子元素的扩展比率
+flex-shrink 设置弹性子元素的收缩比率
+flex-basis 指定弹性子元素伸缩前的默认大小值，相当于width和height属性
+flex :flex-grow flex-shrink flex-basis 属性的复合属性
+align-self 允许独立的弹性子元素覆盖弹性容器的默认对齐设置
+
+
+-webkit-box-align:center;  //图片居中 让子元素居中
+ -webkit-box-pack:center;
+
+
+web2
+jq  html
+js   innerHTML
+文本怎么获取
+
+
+i++   运算完在自己加
+++i   先加在运算
+
+例子2：赋值运算
+a=i++;
+（分解：a=i； i=i+1；）
+a=++i;
+（分解：i=i+1；a=i；）
+这样使用a的值是不一样的
+）
+
+html5增加  header  section aside footer nav aritical
+1、 标准
+2、 表单控件
+3、 camvas （画布）
+4、本地储存 离线缓存
+5、音频视频
+6、拖拽上传文件
+响应式布局 弹性盒布局
+text-shadow
+box-shadow
+
+display:-webkit-box;  弹性盒
+-webkit-box-orient:vertical;  垂直分布
+-webkit-box-flex:1; 占领领空间
+
+js getattribute  setattribute
+jq attr
+
+iscroll5 下面的第一个盒子加滚动条
+
+兼容不同版本 ：  媒体查询
+@media screen and (min-width:680px) ad(max-width:975px){ }
+
+scrollbars:true  显示滚动条
+
+animation  自己制定动画
+transition   需要事件触发
+名字 时间 速度 延迟 次数 方向
+linear 速度：匀速
+alternate 反方向播放动画
+infinite无限循环    alternate反向
+
+transform 是2D向3D的转化  允许对元素进行旋转 缩放 移动 倾斜
+rotate 旋转（单位：deg）    scaleX  x轴定义缩放转换   skew倾斜  trams
+
+1rem=16px
+1px=0.0625rem
+font-size=62.5%
+<video></video>
+play()  开始   video.play() 
+stop() 暂停   video.pause()
+quick() 快进   video.currenTime-=10;  video.currenTime+=10; 
+sound()声音    video.volume+=0.1;
+slience() 静音   video.muted=true;  video.muted=false;
+
+
+overflow:scroll  显示滚动条
+each 跟for循环一样  遍历每个p
+
+
+bootstrap min-css 是支持IE8及以上的
+
+oDiv.currentStyle.width ie支持
+get.computedStyle(oDiv).width;
+封装这个 避免兼容问题
+function getStyle(obj,attr){
+  if(obj.currentStyle){
+    return  obj.currentStyle[attr];
+}else{
+     return getComputedStyle(obj)[attr];
+}
+}
+
+js---------------------------------------------------
+splice() 方法 用于插入、删除或替换数组的元素。
+slice() 方法 可提取字符串的某个部分，并以新的字符串返回被提取的部分。  对原数组没有影响相当于复制
+
+
+arguments.length 获取函数有几个参数
+
+针对  放大镜事件的笔记：
+网页可见区域宽： document.body.clientWidth;
+网页可见区域高： document.body.clientHeight;
+网页可见区域宽： document.body.offsetWidth   (包括边线的宽);
+网页可见区域高： document.body.offsetHeight  (包括边线的宽);
+网页正文全文宽： document.body.scrollWidth;
+网页正文全文高： document.body.scrollHeight;
+网页被卷去的高： document.body.scrollTop;
+网页被卷去的左： document.body.scrollLeft;
+网页正文部分上： window.screenTop;
+网页正文部分左： window.screenLeft;
+屏幕分辨率的高： window.screen.height;
+屏幕分辨率的宽： window.screen.width;
+屏幕可用工作区高度： window.screen.availHeight;
+屏幕可用工作区宽度：window.screen.availWidth;
+5、scrollWidth:获取对象的滚动宽度 。
+
+6、scrollHeight: 获取对象的滚动高度。
+
+7、scrollLeft:设置或获取位于对象左边界和对象中目前可见内容的最左端之间的距离(width+padding为一体)
+
+8、scrollTop:设置或获取位于对象最顶端和对象中可见内容的最顶端之间的距离；(height+padding为一体)
+
+9、clientWidth: 获取对象可见内容的宽度，不包括滚动条，不包括边框；
+
+10、clientHeight: 获取对象可见内容的高度，不包括滚动条，不包括边框；
+
+11、clientLeft: 获取对象的border宽度
+
+12、clientTop：获取对象的border高度
+
+13、offsetParent :当前对象的上级层对象.
+
+
+clientY 事件属性返回当事件被触发时鼠标指针向对于浏览器页面(客户区)的垂直坐标。
+
+客户区指的是当前窗口。
+
+使用instanceof操作符进行类型检测
+
+Person.prototype指向了原型对象
+Person.prototype.constructor又指回了Person构造函数
+Person的每个实例person1和person2都包含一个内部属性（通常为__proto__），person1.__proto__和person2.__proto__指向了原型对象
+从ECMAScript 5开始, [[Prototype]] 可以用Object.getPrototypeOf()和Object.setPrototypeOf()访问器来访问。
+
+其中Object.getPrototypeOf()在所有支持的实现中，这个方法返回[[Prototype]]的值。
+
+
+进制：
+八进制数： （标识符）0 开头   0123；    078（十进制数）
+十六进制： 0x开头 
+十进制： 正常数字
+
+
+遍历json   eval   json.path
+
+js继承 用关键字子类继承父类的一个模式或方法
+1.new的一瞬间创建了一个对象，名字为父类的名字
+2.把当前的this指向当前创建的对象
+3.把父类里的方法复制给创建的对象
+
+ border-collapse: collapse;  去除表格的多重外框线  崩溃
+
+原生ajax原理
+-----------------------------------------------------
+7.white-space
+定义:设置如何处理元素内的空白,此属性还是有点意思的
+white-space:normal; 默认.文字之间的多个空白会被浏览器合并成一个.
+white-space:nowrap;文本不会换行,文本会在在同一行上继续,直到遇到 <br> 标签为止
+white-space:pre;所有空白(包括空格,Tab,换行等)会被浏览器保留
+
+
+8.word-spacing
+定义:增加或减少单词间的空白（即单词间隔）,比较简单直接上例子
+
+9.letter-spacing
+定义:增加或减少字符间的空白（即字符间隔）,注意与word-spacing的单词间距比较
+
+10.text-transform
+定义:控制元素内文本的大小写,在我天朝使用汉字,可能不太需要这个属性,但也略微介绍
+text-transform:uppercase;所有单词全部大写
+text-transform:capitalize;所有单词首字母大写
+text-transform:lowercase;所有单词全部小写
