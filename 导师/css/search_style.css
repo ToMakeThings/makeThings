@@ -1,0 +1,250 @@
+@import url("reset.css");
+html,
+body,
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+html {
+  font-size: 62.5%;
+}
+.wrapper {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+.wrapper header {
+  height: 4.5rem;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper header .left {
+  margin-left: 1rem;
+  width: 1.1rem;
+  height: 1.9rem;
+  background: none;
+}
+.wrapper header .left img {
+  width: 100%;
+  height: auto;
+  background: none;
+}
+.wrapper header .center {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  background: #eeeeee;
+  flex: 1;
+  margin-left: 1.9rem;
+  align-items: center;
+  border-radius: 7px;
+  padding: 0 1.1rem;
+}
+.wrapper header .center .search {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: none;
+}
+.wrapper header .center .search img {
+  width: 100%;
+  height: auto;
+  background: none;
+}
+.wrapper header .center input {
+  flex: 1;
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 3.5rem;
+  background: none;
+  padding-left: 0.6rem;
+}
+.wrapper header .center .off {
+  width: 1.2rem;
+  height: 1.5rem;
+  background: none;
+}
+.wrapper header .center .off img {
+  width: 100%;
+  height: auto;
+  background: none;
+}
+.wrapper header .right {
+  width: 5.5rem;
+  height: 3.5rem;
+  background: none;
+  line-height: 3.5rem;
+  text-align: center;
+}
+.wrapper section {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+.wrapper section .lists {
+  border-top: 2px solid #e5e5e5;
+  border-bottom: 2px solid #e5e5e5;
+  padding: 0 1rem 1.7rem 1rem;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+.wrapper section .lists .list {
+  margin: 1.7rem 0 0 0;
+  padding: 0 0 1.7rem 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  border-bottom: 1px solid #ebebeb;
+}
+.wrapper section .lists .list dl {
+  flex: 1;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+.wrapper section .lists .list dl dt {
+  width: 4rem;
+  height: 4rem;
+  background: none;
+}
+.wrapper section .lists .list dl dt img {
+  width: 100%;
+  height: auto;
+  background: none;
+}
+.wrapper section .lists .list dl dd {
+  margin-left: 1.5rem;
+}
+.wrapper section .lists .list dl dd p:nth-child(1) {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.wrapper section .lists .list dl dd p:nth-child(2) {
+  font-size: 1.2rem;
+  color: #999999;
+}
+.wrapper section .lists .list .right {
+  margin-top: 0.7rem;
+  width: 5.8rem;
+  height: 2.5rem;
+  background: none;
+  border: 1px solid #999999;
+  text-align: center;
+  line-height: 2.5rem;
+  border-radius: 7px;
+}
+.wrapper section .lists .list:nth-last-child(1) {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.wrapper section .jiating {
+  padding: 0 1rem;
+}
+.wrapper section .jiating .list {
+  margin: 1.7rem 0 0 0;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+.wrapper section .jiating .list dl {
+  flex: 1;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+.wrapper section .jiating .list dl dt {
+  width: 4rem;
+  height: 4rem;
+  background: none;
+}
+.wrapper section .jiating .list dl dt img {
+  width: 100%;
+  height: auto;
+  background: none;
+}
+.wrapper section .jiating .list dl dd {
+  margin-left: 1.5rem;
+}
+.wrapper section .jiating .list dl dd p:nth-child(1) {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.wrapper section .jiating .list dl dd p:nth-child(2) {
+  font-size: 1.2rem;
+  color: #999999;
+}
+.wrapper section .jiating .list .right {
+  margin-top: 0.7rem;
+  width: 5.8rem;
+  height: 2.5rem;
+  background: none;
+  border: 1px solid #999999;
+  text-align: center;
+  line-height: 2.5rem;
+  border-radius: 7px;
+  border: 1px solid #ff4342;
+  color: #ff4342;
+}
+.wrapper section .jiating .biaoqian {
+  margin-left: 3rem;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+.wrapper section .jiating .biaoqian span {
+  flex: 1;
+  border: 0.05rem solid #cbcbcb;
+  display: inline-block;
+  margin-left: 0.1rem;
+  border-radius: 7px;
+  justify-content: center;
+  text-align: center;
+  color: #b3b3b3;
+}
+.wrapper section .jiating .miaoshu {
+  margin-top: 1.8rem;
+  padding-bottom: 2.5rem;
+  color: #c2c2c2;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  border-bottom: 1px solid #ebebeb;
+}
+.wrapper section .jiating .jiazai {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 5rem;
+  border-bottom: 1px solid #d9d9d9;
+  color: #333333;
+}
+.wrapper section .jiating .jiazai a {
+  margin-left: 1.5rem;
+  display: block;
+  width: 1rem;
+  height: 2rem;
+  background: none;
+}
+.wrapper section .jiating .jiazai a img {
+  width: 100%;
+  height: auto;
+  background: none;
+}
