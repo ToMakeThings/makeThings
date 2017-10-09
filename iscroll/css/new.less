@@ -1,0 +1,52 @@
+@import url("../css/reset.css");
+.full(@w, @h, @bg) {
+    width: @w;
+    height: @h;
+    background: @bg;
+}
+.box(@var:column) {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: @var;
+    -webkit-flex-direction: @var;
+}
+html,
+body,
+#wrapper {
+    .full(100%,100%,none);
+}
+#wrapper{
+    .box;
+    header{
+        .full(100%,5rem,#CD6839);
+        box-shadow:0 0rem 1rem #CD6839;
+        margin-bottom: 5px;
+        z-index: 2;
+    }
+    section{
+        z-index: 1;
+        flex: 1;
+        overflow-y:scroll;
+        background:#444444; 
+         &::-webkit-scrollbar{
+             width:0px;
+         }
+         .box{
+            .full(100%,auto,none);
+            overflow: auto;
+            li{
+                .full(90%,6rem,#F0F0F0);
+                margin: 1rem auto;
+                text-align: center;
+                line-height: 6rem;
+            }
+        }
+    }
+ 
+    footer{
+        z-index: 2;
+        .full(100%,5rem,#ccc);
+        margin-top: 5px;
+        box-shadow:0 0rem 1rem #000;
+    }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">	
+		<link rel="stylesheet" href="css/new.css" />
+		<!--解决滚动条卡顿-->
+		<script>window.PointerEvent = undefined</script>
+		<style>
+			#pullDown, #pullUp {padding:0 10px;height:30px;line-height:30px;color:#888;text-align:center}  
+		</style>
+	</head>
+	<body onload="loaded()">
+       <div id="wrapper">
+		<header>
+			
+		</header>
+		 
+		<section id="sec_wrapper">
+			<div class="wrapperBox">
+				<div id="pullDown">  
+                  <span class="pullDownLabel">下拉刷新</span>  
+                </div>  
+				<ul class="box">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>10</li>
+				</ul>
+				<div id="pullUp">  
+                  <span class="pullUpLabel">上拉加载更多</span>  
+                </div>
+			</div>
+		</section>
+		<footer></footer>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.js"></script>
+	<!--<script src="js/iscroll.js"></script>-->
+	<script src="js/iscroll-probe.js"></script>
+    <!--<script src="js/newScroll/iscroll.js"></script>-->
+	<!--<script src="js/newScroll/iscroll-lite.js"></script>-->
+	<!--<script src="js/iscroll-zoom.js"></script>--><!--缩放-->
+	<script>
+	var myScroll,pullDownEl, pullDownOffset,pullUpEl, pullUpOffset,generatedCount = 0; 
+    function loaded() {
+    pullDownEl = document.getElementById('pullDown');  
+    pullDownOffset = pullDownEl.offsetHeight;  
+    pullUpEl = document.getElementById('pullUp');     
+    pullUpOffset = pullUpEl.offsetHeight; 
+    //先隐藏下拉刷新和上拉加载
+    $("#pullDown").hide();
+        myScroll = new IScroll('#sec_wrapper',{
+//              disablePointer: false,
+//              momentum: true,
+//              keyBindings:true,
+//			    mouseWheel: true,
+//			    scrollbars: true,
+//			    interactiveScrollbars:true,
+//				eventPassthrough:false,
+//              指示器
+//				indicators: {
+//				    el: '#indicator',
+//				}
+//              根据元素进行滚动间歇
+//				snap: 'li',
+//				以下三个是缩放功能 用的是 isroll-zoom
+				/*zoom: true,
+			    mouseWheel: true,
+			    wheelAction: 'zoom'*/
+			    //开始实例
+ 		        scrollbars: true,  
+                mouseWheel: false, 
+//必有的属性不然会导致插件无响应  可以设置为  1 2 3 区别  probeType: 1：滚动的时候会派发scroll事件，会截流。2：滚动的时候实时派发scroll事件，不会截流。 3：除了实时派发scroll事件，在swipe的情况下仍然能实时派发scroll事件
+                probeType: 2,  
+                bindToWrapper:true , 
+                fadeScrollbars: true,//滚动条渐隐
+
+        interactiveScrollbars: true,//滚动条可拖动
+
+        shrinkScrollbars: 'scale', // 当滚动边界之外的滚动条是由少量的收缩
+
+//      useTransform: true,//CSS转化
+//
+//      useTransition: true,//CSS过渡
+        });
+         myScroll.on("scroll",function(){  
+                 console.log("准备")
+                 $("#pullDown").show();
+            if (this.y > 5 && !pullDownEl.className.match('flip')) {  
+                pullDownEl.className = 'flip';  
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';  
+                this.minScrollY = 0;  
+            } else if (this.y < 5 && pullDownEl.className.match('flip')) {  
+                pullDownEl.className = '';  
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新';  
+                this.minScrollY = -pullDownOffset;  
+            } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {  
+                pullUpEl.className = 'flip';  
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';  
+                this.maxScrollY = this.maxScrollY;  
+            } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {  
+                pullUpEl.className = '';  
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多';  
+                this.maxScrollY = pullUpOffset;  
+            }  
+            });  
+            myScroll.on("scrollEnd",function(){  
+                 console.log("结束")
+                  if (pullDownEl.className.match('flip')) {  
+                pullDownEl.className = 'loading';  
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中';                 
+                pullDownAction();   // Execute custom function (ajax call?)  
+            } else if (pullUpEl.className.match('flip')) {  
+                pullUpEl.className = 'loading';  
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中'; 
+                pullUpAction(); // Execute custom function (ajax call?)  
+            }  
+            });  
+//      动画抖动
+//      myScroll.scrollTo(0, -30, 1000, IScroll.utils.ease.elastic);
+//      下面这个例子将在一秒内沿着纵向滚动到第几页。
+//      myScroll.goToPage(0,2, 1000);
+			function pullDownAction(){
+			  	setTimeout(function(){
+			  		$("#pullDown").hide();
+			  		 pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新';
+			  		 myScroll.refresh(); 
+			  	},1000)
+			  	
+			}
+			function pullUpAction(){
+			  	setTimeout(function(){
+			  		// $("#pullUp").hide();
+			  	//	  pullDownEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多';
+			  	      $(".pullUpLabel").html("上拉加载更多")
+			  	      myScroll.refresh();
+			  	},1000)
+			}
+       
+    }
+    
+    
+	</script>
+</html>
